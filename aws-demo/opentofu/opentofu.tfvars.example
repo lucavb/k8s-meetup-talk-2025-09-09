@@ -1,0 +1,25 @@
+# Example OpenTofu variables file  
+# Copy this to terraform.tfvars and customize as needed
+
+# AWS Configuration
+aws_region = "eu-central-1"  # Change to your preferred AWS region
+
+# EKS Cluster Configuration
+cluster_name    = "luca-karpenter-demo"  # Change if you want a different cluster name
+cluster_version = "1.33"           # EKS version
+
+# Instance Types for System Nodes
+node_instance_types = ["t3.medium"]  # Small instances for system pods
+
+# Workload Instance Types (Karpenter can provision these)
+workload_instance_types = [
+  "t3.medium",    # Burstable CPU, cost-effective
+  "t3.large",     # Burstable CPU, more memory  
+  "m5.large",     # General purpose
+  "m5.xlarge",    # General purpose, more CPU/memory
+  "c5.large",     # CPU optimized
+  "c5.xlarge",    # CPU optimized, more cores
+]
+
+# Cost Optimization
+enable_spot_instances = true  # Enable spot instances for cost savings

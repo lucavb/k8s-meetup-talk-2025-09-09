@@ -1,0 +1,32 @@
+---
+globs: *.sh,*.md,slides.md
+description: Guidelines for demo scripts and presentation materials
+---
+
+# Demo and Presentation Guidelines
+
+## Demo Scripts
+- Scripts should be executable and well-documented
+- Include error handling and cleanup procedures
+- Demo scripts are in [aws-demo/scripts/](mdc:aws-demo/scripts/) and [aws-demo/k8s/karpenter-demo/](mdc:aws-demo/k8s/karpenter-demo/)
+- Main presentation script: [demo-presentation.sh](mdc:aws-demo/scripts/demo-presentation.sh)
+
+## Presentation Materials
+- Slides are in [slides/slides.md](mdc:slides/slides.md) using Slidev format
+- Supporting components in [slides/components/](mdc:slides/components/)
+- Follow Slidev conventions for slide formatting and navigation
+
+## Demo Flow
+- Follow the demo script in [aws-demo/docs/demo-script.md](mdc:aws-demo/docs/demo-script.md)
+- Karpenter demos focus on autoscaling and cost optimization
+- Include both batch processing and web service scaling scenarios
+
+## Documentation
+- Keep README files concise and focused on setup/usage
+- Include prerequisites and dependencies clearly
+- Provide cleanup instructions to avoid unexpected AWS charges
+
+## Cost Management
+- Always include cleanup procedures in demo scripts
+- Monitor costs using provided cost-checking scripts
+- Document expected costs and resource usage

@@ -1,0 +1,30 @@
+---
+globs: *.spec.ts,*.test.ts,*.spec.js,*.test.js
+description: Testing guidelines and framework preferences
+---
+
+# Testing Guidelines
+
+## Test Framework
+- Use Vitest as the primary testing framework (not Jest)
+- Configure Vitest in package.json or vitest.config.ts
+
+## Test File Organization
+- Place test files (.spec.ts) next to their source files, not in __tests__ folders
+- Use descriptive test names that explain the behavior being tested
+- Group related tests using describe blocks
+
+## Test Structure
+- Follow the Arrange-Act-Assert pattern
+- Use meaningful assertion messages
+- Mock external dependencies appropriately
+
+## TypeScript Testing
+- Leverage TypeScript types in tests for better type safety
+- Use proper typing for test fixtures and mocks
+- Ensure tests compile without TypeScript errors
+
+## Demo Testing
+- For this demo project, focus on integration tests for critical paths
+- Test Kubernetes resource generation if applicable
+- Validate configuration files and templates

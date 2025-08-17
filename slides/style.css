@@ -1,0 +1,56 @@
+/* Global sans-serif font family for all text */
+* {
+  font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif !important;
+}
+
+/* Material Darker theme background override */
+pre.shiki {
+  background-color: var(--shiki-dark-bg, #212121);
+}
+
+.dark pre.shiki {
+  background-color: #212121; /* Material Darker background */
+}
+
+.light pre.shiki {
+  background-color: #fafafa; /* Material Lighter background */
+}
+
+/* Custom title styling - Modern sans-serif with better colors */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+/* Main titles - allow Tailwind classes to work */
+h1 {
+  font-weight: 800;
+}
+
+/* Section headings - allow Tailwind classes to work */
+h2 {
+  font-weight: 700;
+}
+
+/* Subsection headings */
+h3 {
+  font-weight: 600;
+}
+
+/* Smaller headings */
+h4, h5, h6 {
+  color: #374151; /* Modern gray */
+  font-weight: 600;
+}
+
+/* Dark mode overrides - allow Tailwind classes to work for h1 and h2 */
+
+.dark h3 {
+  color: #10b981; /* Emerald green for dark mode */
+}
+
+.dark h4, .dark h5, .dark h6 {
+  color: #d1d5db; /* Light gray for dark mode */
+}

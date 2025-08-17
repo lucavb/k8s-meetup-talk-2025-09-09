@@ -1,0 +1,44 @@
+Thank you for installing {{ .Chart.Name }}!
+
+Your Karpenter auto-scaling configuration has been deployed:
+
+✅ Default Node Class: {{ .Values.nodeClass.name }}
+✅ Default Node Pool: {{ .Values.nodePool.name }}
+
+Your cluster {{ .Values.cluster.name }} is now configured to provision worker nodes optimized for general workloads.
+
+Instance types configured for general workloads:
+{{- range .Values.nodePool.requirements.instanceTypes }}
+  • {{ . }}
+{{- end }}
+
+{{- if .Values.nodePool.taints }}
+Taints applied:
+{{- range .Values.nodePool.taints }}
+  • {{ .key }}={{ .value }}:{{ .effect }}
+{{- end }}
+{{- else }}
+No taints applied - general workloads can be scheduled freely.
+{{- end }}
+
+To check the status of your Karpenter setup:
+  kubectl get nodepools -n {{ .Values.namespace }}
+  kubectl get ec2nodeclasses -n {{ .Values.namespace }}
+
+To view nodes provisioned by Karpenter:
+  kubectl get nodes -l karpenter.sh/nodepool={{ .Values.nodePool.name }}
+
+To view Karpenter logs:
+  kubectl logs -f -n karpenter -l app.kubernetes.io/name=karpenter
+
+For general workloads, no special tolerations are needed:
+  spec:
+    containers:
+      - name: app
+        image: your-app-image
+        resources:
+          requests:
+            cpu: "500m"
+            memory: "512Mi"
+
+For more information about customizing this configuration, see the values.yaml file.

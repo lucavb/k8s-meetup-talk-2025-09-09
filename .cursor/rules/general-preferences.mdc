@@ -1,0 +1,25 @@
+---
+alwaysApply: true
+description: General coding preferences and standards for this project
+---
+
+# General Coding Preferences
+
+## Code Style
+- Avoid unnecessary or superfluous comments in code
+- Use camelCase for Zod schema names
+- Do not include 'prepare' scripts in package.json
+- Do not use ts-node for running TypeScript
+
+## Development Workflow  
+- Do not automatically start development servers - let the user run them manually
+- For infrastructure changes, prefer OpenTofu over manual AWS CLI commands
+- Set AWS profiles manually instead of through .env files
+
+## Testing
+- Use Vitest as the test framework (not Jest)
+- Place test files (.spec.ts) next to their source files, not in __tests__ folders
+
+## Documentation
+- In MDC frontmatter, globs field should not be quoted to satisfy Cursor's syntax
+- Only create documentation files when explicitly requested

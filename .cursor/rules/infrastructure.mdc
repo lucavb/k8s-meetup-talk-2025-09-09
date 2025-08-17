@@ -1,0 +1,29 @@
+---
+globs: *.tf,*.tfvars,*.sh
+description: Infrastructure and deployment guidelines using OpenTofu
+---
+
+# Infrastructure Guidelines
+
+## OpenTofu Configuration
+- Main infrastructure code is in [aws-demo/opentofu/](mdc:aws-demo/opentofu/)
+- Use [main.tf](mdc:aws-demo/opentofu/main.tf) for resource definitions
+- Configure variables in [variables.tf](mdc:aws-demo/opentofu/variables.tf)
+- Set outputs in [outputs.tf](mdc:aws-demo/opentofu/outputs.tf)
+- Use [opentofu.tfvars.example](mdc:aws-demo/opentofu/opentofu.tfvars.example) as template for variable values
+
+## AWS Resources
+- Prefer infrastructure as code (OpenTofu) over manual AWS CLI commands
+- Follow AWS tagging best practices for cost tracking and resource management
+- Consider cost implications when provisioning resources for demos
+
+## Deployment Scripts
+- Demo scripts are located in [aws-demo/scripts/](mdc:aws-demo/scripts/)
+- Main deployment script: [deploy.sh](mdc:aws-demo/scripts/deploy.sh)
+- Cleanup scripts available: [cleanup.sh](mdc:aws-demo/scripts/cleanup.sh) and [force-cleanup.sh](mdc:aws-demo/scripts/force-cleanup.sh)
+- Cost monitoring: [check-worker-costs.sh](mdc:aws-demo/scripts/check-worker-costs.sh)
+
+## Security
+- Never commit sensitive values like API keys or access tokens
+- Use .tfvars files for environment-specific configurations
+- Keep example files (.example) for reference without actual secrets

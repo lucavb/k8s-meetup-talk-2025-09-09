@@ -1,0 +1,17 @@
+# Minimal Karpenter configuration - let's get it working first
+settings:
+  clusterName: luca-karpenter-demo
+  interruptionQueue: Karpenter-luca-karpenter-demo
+
+serviceAccount:
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::086771290543:role/KarpenterController-20250816062355667100000001
+
+tolerations:
+  - key: "tool"
+    operator: "Exists"
+    value: "karpenter"
+  - key: "node-role.kubernetes.io/system"
+    operator: "Equal"
+    value: "true"
+    effect: "NoSchedule"

@@ -1,0 +1,29 @@
+---
+globs: *.yaml,*.yml,*.tpl,Chart.yaml,values.yaml
+description: Kubernetes and Helm chart guidelines for the demo workloads
+---
+
+# Kubernetes and Helm Guidelines
+
+## Helm Charts Structure
+- Follow standard Helm chart structure: Chart.yaml, values.yaml, templates/
+- Use semantic versioning in Chart.yaml
+- Keep template files organized by resource type
+- Use _helpers.tpl for reusable template functions
+
+## Demo Workloads
+The project contains demo workloads in [aws-demo/k8s/demo-workload/](mdc:aws-demo/k8s/demo-workload/) including:
+- CPU-intensive workloads for Karpenter scaling demos
+- Batch processing jobs
+- HPA (Horizontal Pod Autoscaler) configurations
+- Web services for load testing
+
+## Karpenter Configuration
+- Karpenter node pools and EC2 node classes are in [aws-demo/k8s/karpenter-config/](mdc:aws-demo/k8s/karpenter-config/)
+- Follow AWS best practices for instance selection and node configuration
+- Consider cost optimization in node pool definitions
+
+## Resource Naming
+- Use consistent naming patterns across Kubernetes resources
+- Include demo/environment context in resource names when appropriate
+- Follow Kubernetes naming conventions (DNS subdomain names)

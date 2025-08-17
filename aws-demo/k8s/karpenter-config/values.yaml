@@ -1,0 +1,90 @@
+# Global configuration
+namespace: karpenter
+
+# AWS Configuration
+aws:
+  iam:
+    nodeRole: "Karpenter-luca-karpenter-demo-20250817201752840000000011"
+  eks:
+    clusterName: "luca-karpenter-demo"
+
+cluster:
+  name: "luca-karpenter-demo"
+  discoveryTag: "luca-karpenter-demo"
+  instanceProfile: "luca-karpenter-demo-karpenter-node"
+
+# Default Node Class Configuration for General Workloads
+nodeClass:
+  name: "default-nodeclass"
+  amiFamily: "AL2023"
+  
+  blockDevice:
+    deviceName: "/dev/xvda"
+    volumeSize: "50Gi"
+    volumeType: "gp3"
+    iops: 3000
+    throughput: 125
+    encrypted: true
+    deleteOnTermination: true
+  
+  userData: |
+    # Standard worker node configuration
+    yum update -y
+    
+    # Install monitoring tools
+    yum install -y htop
+  
+  metadataOptions:
+    httpEndpoint: "enabled"
+    httpProtocolIPv6: "disabled"
+    httpPutResponseHopLimit: 2
+    httpTokens: "required"
+  
+  tags:
+    name: "karpenter-worker-node"
+    nodeType: "general-purpose"
+    managedBy: "karpenter"
+
+# Default Node Pool Configuration for General Workloads
+nodePool:
+  name: "default-nodepool"
+  
+  labels:
+    nodeType: "general-purpose"
+    provisioner: "karpenter"
+    workload: "general"
+  
+  requirements:
+    arch: ["amd64"]
+    os: ["linux"]
+    capacityType: ["spot", "on-demand"]
+    # Mixed instance types for different workload requirements
+    instanceTypes:
+      # General purpose
+      - "t3.medium"
+      - "t3.large"
+      - "t3.xlarge"
+      - "t3.2xlarge"
+      - "m5.large"
+      - "m5.xlarge"
+      - "m5.2xlarge"
+      # CPU optimized for CPU-intensive batch jobs
+      - "c5.large"
+      - "c5.xlarge"
+      - "c5.2xlarge"
+      - "c5.4xlarge"
+      # Memory optimized for analytics workloads
+      - "r5.large"
+      - "r5.xlarge"
+      - "r5.2xlarge"
+  
+  # No taints - allow general workloads
+  taints: []
+  
+  limits:
+    cpu: "1000"
+    memory: "1000Gi"
+  
+  disruption:
+    consolidationPolicy: "WhenEmpty"
+    consolidateAfter: "30s"
